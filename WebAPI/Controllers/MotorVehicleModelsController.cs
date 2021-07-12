@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using Microsoft.AspNet.OData;
+using ODat = Microsoft.AspNet.OData;
 using DomainModel;
 using Ent = DomainModel.Entities;
 
@@ -28,7 +29,10 @@ namespace WebAPI.Controllers
             base.Dispose(disposing);
         }
 
-        [EnableQuery]
+        [EnableQuery(
+            AllowedOrderByProperties = "MotorVehicleType,Name",
+            MaxTop = int.MaxValue,
+            MaxSkip = int.MaxValue)]
         public IQueryable<Ent.MotorVehicleModel> Get()
         {
             return context.MotorVehicleModels;

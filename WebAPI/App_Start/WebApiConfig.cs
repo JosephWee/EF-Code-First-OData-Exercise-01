@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
+using ODat = Microsoft.AspNet.OData;
 using Ent = DomainModel.Entities;
 
 namespace WebAPI
@@ -29,6 +30,7 @@ namespace WebAPI
             //    defaults: new { id = RouteParameter.Optional }
             //);
 
+            config.OrderBy().Count().MaxTop(null).SkipToken();
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Ent.VehicleMake>("VehicleMakes");
             builder.EntitySet<Ent.MotorVehicleModel>("MotorVehicleModels");
