@@ -5,14 +5,52 @@
     <title></title>
 </head>
 <body>
-    <div>
-        <a href="https://localhost:44339/MotorVehicleModels?$count=true&$top=0">Count Number of MotorVehicleModels</a>
-    </div>
-    <div>
-        <a href="https://localhost:44339/MotorVehicleModels?$orderby=MotorVehicleType,Name&$top=5">Get first 5 MotorVehicleModels after sorting by MotorVehicleType,Name</a>
-    </div>
-    <div>
-        <a href="https://localhost:44339/MotorVehicleModels?$orderby=MotorVehicleType,Name&$skip=5&$top=5">Get next 5 MotorVehicleModels after sorting by MotorVehicleType,Name</a>
-    </div>
+    <ol>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes?$count=true&$top=0">Count Number of VehicleMakes</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes?$count=true&$top=5&$orderby=Name">Get first 5 VehicleMakes after sorting by Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/794f01f1-0d0f-4bbc-8649-9dc8af7e0c23/MotorVehicleModels?$count=true&$top=0">Count number of MotorVehicleModels of the VehicleMake GlobalVehicle</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/794f01f1-0d0f-4bbc-8649-9dc8af7e0c23/MotorVehicleModels?$count=true&$top=5&$orderby=MotorVehicleType,Name">Get first 5 MotorVehicleModels of the VehicleMake GlobalVehicle after sorting by MotorVehicleType,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/794f01f1-0d0f-4bbc-8649-9dc8af7e0c23/MotorVehicleModels?$count=true&$top=5&$orderby=CargoVolume%20DESC,Name">Get first 5 MotorVehicleModels of the VehicleMake GlobalVehicle after sorting by CargoVolume DESC,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/794f01f1-0d0f-4bbc-8649-9dc8af7e0c23/MotorVehicleModels?$count=true&$top=5&$filter=(MotorVehicleType eq DomainModel.Entities.MotorVehicleType'Van')&$orderby=CargoVolume%20DESC,Name">Get first 5 Van MotorVehicleModels of the VehicleMake GlobalVehicle after sorting by CargoVolume DESC,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/794f01f1-0d0f-4bbc-8649-9dc8af7e0c23/MotorVehicleModels?$count=true&$top=5&$filter=(MotorVehicleType eq DomainModel.Entities.MotorVehicleType'Pickup')&$orderby=CargoVolume%20DESC,Name">Get first 5 Pickup MotorVehicleModels of the VehicleMake GlobalVehicle after sorting by CargoVolume DESC,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/8a103c71-1675-46f8-bde8-4637caf656f1/MotorVehicleModels?$count=true&$top=0">Count number of MotorVehicleModels of the VehicleMake StarAuto</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/8a103c71-1675-46f8-bde8-4637caf656f1/MotorVehicleModels?$count=true&$top=5&$orderby=MotorVehicleType,Name">Get first 5 MotorVehicleModels of the VehicleMake StarAuto after sorting by MotorVehicleType,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/8a103c71-1675-46f8-bde8-4637caf656f1/MotorVehicleModels?$count=true&$top=5&$orderby=CargoVolume%20DESC,Name">Get first 5 MotorVehicleModels of the VehicleMake StarAuto after sorting by CargoVolume DESC,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/8a103c71-1675-46f8-bde8-4637caf656f1/MotorVehicleModels?$count=true&$top=5&$filter=(MotorVehicleType eq DomainModel.Entities.MotorVehicleType'Van')&$orderby=CargoVolume%20DESC,Name">Get first 5 Van MotorVehicleModels of the VehicleMake StarAuto after sorting by CargoVolume DESC,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/VehicleMakes/8a103c71-1675-46f8-bde8-4637caf656f1/MotorVehicleModels?$count=true&$top=5&$filter=(MotorVehicleType eq DomainModel.Entities.MotorVehicleType'Pickup')&$orderby=CargoVolume%20DESC,Name">Get first 5 Pickup MotorVehicleModels of the VehicleMake StarAuto after sorting by CargoVolume DESC,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/MotorVehicleModels?$count=true&$top=0">Count Number of MotorVehicleModels</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/MotorVehicleModels?$orderby=MotorVehicleType,Name&$top=5">Get first 5 MotorVehicleModels after sorting by MotorVehicleType,Name</a>
+        </li>
+        <li>
+            <a href="https://localhost:44339/MotorVehicleModels?$orderby=MotorVehicleType,Name&$skip=5&$top=5">Get next 5 MotorVehicleModels after sorting by MotorVehicleType,Name</a>
+        </li>
+    </ol>
 </body>
 </html>

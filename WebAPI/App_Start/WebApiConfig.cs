@@ -30,7 +30,7 @@ namespace WebAPI
             //    defaults: new { id = RouteParameter.Optional }
             //);
 
-            config.OrderBy().Count().MaxTop(null).SkipToken();
+            config.OrderBy().Count().MaxTop(null).SkipToken().Filter();
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Ent.VehicleMake>("VehicleMakes");
             builder.EntitySet<Ent.MotorVehicleModel>("MotorVehicleModels");
