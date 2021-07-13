@@ -1,0 +1,86 @@
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+  <edmx:DataServices>
+    <Schema Namespace="DomainModel.Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityType Name="VehicleMake">
+        <Key>
+          <PropertyRef Name="VehicleMakeId" />
+        </Key>
+        <Property Name="VehicleMakeId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" />
+        <NavigationProperty Name="MotorVehicleModels" Type="Collection(DomainModel.Entities.MotorVehicleModel)" />
+      </EntityType>
+      <EntityType Name="MotorVehicleModel">
+        <Key>
+          <PropertyRef Name="MotorVehicleModelId" />
+        </Key>
+        <Property Name="MotorVehicleModelId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="VehicleMakeId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" />
+        <Property Name="MotorVehicleType" Type="DomainModel.Entities.MotorVehicleType" Nullable="false" />
+        <Property Name="FuelCapacity" Type="Edm.Double" Nullable="false" />
+        <Property Name="FuelConsumption" Type="Edm.Double" Nullable="false" />
+        <Property Name="EngineType" Type="DomainModel.Entities.EngineType" Nullable="false" />
+        <Property Name="MaxPower" Type="Edm.Int32" Nullable="false" />
+        <Property Name="TransmissionType" Type="DomainModel.Entities.TransmissionType" Nullable="false" />
+        <Property Name="AWD" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="CargoVolume" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="MotorVehicles" Type="Collection(DomainModel.Entities.MotorVehicle)" />
+      </EntityType>
+      <EntityType Name="MotorVehicle">
+        <Key>
+          <PropertyRef Name="Id" />
+        </Key>
+        <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="MotorVehicleModelId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="Year" Type="Edm.Int32" Nullable="false" />
+        <Property Name="VIN" Type="Edm.String" Nullable="false" MaxLength="17" />
+        <Property Name="Registration" Type="Edm.String" MaxLength="8" />
+        <Property Name="Mileage" Type="Edm.Int32" Nullable="false" />
+        <Property Name="HasNavSystem" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HasDashCam" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HasReversingCam" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HasForwardParkingSensor" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HasRearParkingSensor" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HasBlindspotMonitoring" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="HasAutomaticEmergencyBrake" Type="Edm.Boolean" Nullable="false" />
+        <Property Name="LocationId" Type="Edm.Guid" />
+      </EntityType>
+      <EnumType Name="MotorVehicleType">
+        <Member Name="Scooter" Value="0" />
+        <Member Name="Motorcycle" Value="1" />
+        <Member Name="HatchBack" Value="2" />
+        <Member Name="Sedan" Value="3" />
+        <Member Name="Wagon" Value="4" />
+        <Member Name="CompactSUV" Value="5" />
+        <Member Name="SUV" Value="6" />
+        <Member Name="MiniBus" Value="7" />
+        <Member Name="Van" Value="8" />
+        <Member Name="Pickup" Value="9" />
+      </EnumType>
+      <EnumType Name="EngineType">
+        <Member Name="Diesel" Value="0" />
+        <Member Name="Petrol" Value="1" />
+        <Member Name="Hybrid_Electric_Diesel" Value="2" />
+        <Member Name="Hybrid_Electric_Petrol" Value="3" />
+        <Member Name="Electric" Value="4" />
+      </EnumType>
+      <EnumType Name="TransmissionType">
+        <Member Name="Auto" Value="0" />
+        <Member Name="Manual" Value="1" />
+      </EnumType>
+      <EnumType Name="PickupCargoAccessoryType">
+        <Member Name="None" Value="0" />
+        <Member Name="TonneauCover" Value="1" />
+        <Member Name="TruckCap" Value="2" />
+      </EnumType>
+    </Schema>
+    <Schema Namespace="Default" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+      <EntityContainer Name="Container">
+        <EntitySet Name="VehicleMakes" EntityType="DomainModel.Entities.VehicleMake">
+          <NavigationPropertyBinding Path="MotorVehicleModels" Target="MotorVehicleModels" />
+        </EntitySet>
+        <EntitySet Name="MotorVehicleModels" EntityType="DomainModel.Entities.MotorVehicleModel" />
+      </EntityContainer>
+    </Schema>
+  </edmx:DataServices>
+</edmx:Edmx>
