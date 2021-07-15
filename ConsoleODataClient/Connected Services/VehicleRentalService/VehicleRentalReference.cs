@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 15/7/2021 3:51:44 pm
+// Generation date: 15/7/2021 4:48:59 pm
 namespace DomainModel.Entities
 {
         /// <summary>
@@ -626,6 +626,28 @@ namespace DomainModel.Entities
         public MotorVehicleSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<MotorVehicle> query)
             : base(query) {}
 
+        /// <summary>
+        /// There are no comments for MotorVehicleModel in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("MotorVehicleModel")]
+        public virtual global::DomainModel.Entities.MotorVehicleModelSingle MotorVehicleModel
+        {
+            get
+            {
+                if (!this.IsComposable)
+                {
+                    throw new global::System.NotSupportedException("The previous function is not composable.");
+                }
+                if ((this._MotorVehicleModel == null))
+                {
+                    this._MotorVehicleModel = new global::DomainModel.Entities.MotorVehicleModelSingle(this.Context, GetPath("MotorVehicleModel"));
+                }
+                return this._MotorVehicleModel;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::DomainModel.Entities.MotorVehicleModelSingle _MotorVehicleModel;
     }
         /// <summary>
         /// There are no comments for MotorVehicle in the schema.
@@ -641,7 +663,6 @@ namespace DomainModel.Entities
         /// Create a new MotorVehicle object.
         /// </summary>
         /// <param name="ID">Initial value of Id.</param>
-        /// <param name="motorVehicleModelId">Initial value of MotorVehicleModelId.</param>
         /// <param name="year">Initial value of Year.</param>
         /// <param name="vIN">Initial value of VIN.</param>
         /// <param name="mileage">Initial value of Mileage.</param>
@@ -654,7 +675,6 @@ namespace DomainModel.Entities
         /// <param name="hasAutomaticEmergencyBrake">Initial value of HasAutomaticEmergencyBrake.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         public static MotorVehicle CreateMotorVehicle(global::System.Guid ID, 
-                    global::System.Guid motorVehicleModelId, 
                     int year, 
                     string vIN, 
                     int mileage, 
@@ -668,7 +688,6 @@ namespace DomainModel.Entities
         {
             MotorVehicle motorVehicle = new MotorVehicle();
             motorVehicle.Id = ID;
-            motorVehicle.MotorVehicleModelId = motorVehicleModelId;
             motorVehicle.Year = year;
             motorVehicle.VIN = vIN;
             motorVehicle.Mileage = mileage;
@@ -709,7 +728,7 @@ namespace DomainModel.Entities
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         [global::Microsoft.OData.Client.OriginalNameAttribute("MotorVehicleModelId")]
-        public virtual global::System.Guid MotorVehicleModelId
+        public virtual global::System.Nullable<global::System.Guid> MotorVehicleModelId
         {
             get
             {
@@ -724,8 +743,8 @@ namespace DomainModel.Entities
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::System.Guid _MotorVehicleModelId;
-        partial void OnMotorVehicleModelIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _MotorVehicleModelId;
+        partial void OnMotorVehicleModelIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnMotorVehicleModelIdChanged();
         /// <summary>
         /// There are no comments for Property Year in the schema.
@@ -1004,6 +1023,29 @@ namespace DomainModel.Entities
         partial void OnLocationIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnLocationIdChanged();
         /// <summary>
+        /// There are no comments for Property MotorVehicleModel in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("MotorVehicleModel")]
+        public virtual global::DomainModel.Entities.MotorVehicleModel MotorVehicleModel
+        {
+            get
+            {
+                return this._MotorVehicleModel;
+            }
+            set
+            {
+                this.OnMotorVehicleModelChanging(value);
+                this._MotorVehicleModel = value;
+                this.OnMotorVehicleModelChanged();
+                this.OnPropertyChanged("MotorVehicleModel");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::DomainModel.Entities.MotorVehicleModel _MotorVehicleModel;
+        partial void OnMotorVehicleModelChanging(global::DomainModel.Entities.MotorVehicleModel value);
+        partial void OnMotorVehicleModelChanged();
+        /// <summary>
         /// This event is raised when the value of the property is changed
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -1271,6 +1313,24 @@ namespace Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.MotorVehicleModel> _MotorVehicleModels;
         /// <summary>
+        /// There are no comments for MotorVehicles in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("MotorVehicles")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.MotorVehicle> MotorVehicles
+        {
+            get
+            {
+                if ((this._MotorVehicles == null))
+                {
+                    this._MotorVehicles = base.CreateQuery<global::DomainModel.Entities.MotorVehicle>("MotorVehicles");
+                }
+                return this._MotorVehicles;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.MotorVehicle> _MotorVehicles;
+        /// <summary>
         /// There are no comments for VehicleMakes in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -1285,6 +1345,14 @@ namespace Default
         public virtual void AddToMotorVehicleModels(global::DomainModel.Entities.MotorVehicleModel motorVehicleModel)
         {
             base.AddObject("MotorVehicleModels", motorVehicleModel);
+        }
+        /// <summary>
+        /// There are no comments for MotorVehicles in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToMotorVehicles(global::DomainModel.Entities.MotorVehicle motorVehicle)
+        {
+            base.AddObject("MotorVehicles", motorVehicle);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private abstract class GeneratedEdmModel

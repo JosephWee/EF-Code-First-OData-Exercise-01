@@ -26,7 +26,7 @@ namespace DomainModel.Entities
         }
 
         public Guid MotorVehicleModelId { get; set; }
-        public virtual MotorVehicleModel MotorVehicleModel { get; protected set; }
+        public virtual MotorVehicleModel MotorVehicleModel { get; set; }
 
         [Required]
         [Index]

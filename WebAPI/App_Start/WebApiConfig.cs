@@ -34,6 +34,7 @@ namespace WebAPI
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<Ent.VehicleMake>("VehicleMakes");
             builder.EntitySet<Ent.MotorVehicleModel>("MotorVehicleModels");
+            builder.EntitySet<Ent.MotorVehicle>("MotorVehicles");
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
                 routePrefix: null,

@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\MotorVehiclesController.cs" />
     <Compile Include="Controllers\MotorVehicleModelsController.cs" />
     <Compile Include="Controllers\VehicleMakesController.cs" />
     <Compile Include="Global.asax.cs">

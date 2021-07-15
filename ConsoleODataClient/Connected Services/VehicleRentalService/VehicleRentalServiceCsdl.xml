@@ -34,7 +34,7 @@
           <PropertyRef Name="Id" />
         </Key>
         <Property Name="Id" Type="Edm.Guid" Nullable="false" />
-        <Property Name="MotorVehicleModelId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="MotorVehicleModelId" Type="Edm.Guid" />
         <Property Name="Year" Type="Edm.Int32" Nullable="false" />
         <Property Name="VIN" Type="Edm.String" Nullable="false" MaxLength="17" />
         <Property Name="Registration" Type="Edm.String" MaxLength="8" />
@@ -47,6 +47,9 @@
         <Property Name="HasBlindspotMonitoring" Type="Edm.Boolean" Nullable="false" />
         <Property Name="HasAutomaticEmergencyBrake" Type="Edm.Boolean" Nullable="false" />
         <Property Name="LocationId" Type="Edm.Guid" />
+        <NavigationProperty Name="MotorVehicleModel" Type="DomainModel.Entities.MotorVehicleModel">
+          <ReferentialConstraint Property="MotorVehicleModelId" ReferencedProperty="MotorVehicleModelId" />
+        </NavigationProperty>
       </EntityType>
       <EnumType Name="MotorVehicleType">
         <Member Name="Scooter" Value="0" />
@@ -83,7 +86,11 @@
           <NavigationPropertyBinding Path="MotorVehicleModels" Target="MotorVehicleModels" />
         </EntitySet>
         <EntitySet Name="MotorVehicleModels" EntityType="DomainModel.Entities.MotorVehicleModel">
+          <NavigationPropertyBinding Path="MotorVehicles" Target="MotorVehicles" />
           <NavigationPropertyBinding Path="VehicleMake" Target="VehicleMakes" />
+        </EntitySet>
+        <EntitySet Name="MotorVehicles" EntityType="DomainModel.Entities.MotorVehicle">
+          <NavigationPropertyBinding Path="MotorVehicleModel" Target="MotorVehicleModels" />
         </EntitySet>
       </EntityContainer>
     </Schema>
