@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 13/7/2021 2:20:46 pm
+// Generation date: 15/7/2021 3:51:44 pm
 namespace DomainModel.Entities
 {
         /// <summary>
@@ -193,6 +193,28 @@ namespace DomainModel.Entities
             : base(query) {}
 
         /// <summary>
+        /// There are no comments for VehicleMake in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("VehicleMake")]
+        public virtual global::DomainModel.Entities.VehicleMakeSingle VehicleMake
+        {
+            get
+            {
+                if (!this.IsComposable)
+                {
+                    throw new global::System.NotSupportedException("The previous function is not composable.");
+                }
+                if ((this._VehicleMake == null))
+                {
+                    this._VehicleMake = new global::DomainModel.Entities.VehicleMakeSingle(this.Context, GetPath("VehicleMake"));
+                }
+                return this._VehicleMake;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::DomainModel.Entities.VehicleMakeSingle _VehicleMake;
+        /// <summary>
         /// There are no comments for MotorVehicles in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -229,7 +251,6 @@ namespace DomainModel.Entities
         /// Create a new MotorVehicleModel object.
         /// </summary>
         /// <param name="motorVehicleModelId">Initial value of MotorVehicleModelId.</param>
-        /// <param name="vehicleMakeId">Initial value of VehicleMakeId.</param>
         /// <param name="name">Initial value of Name.</param>
         /// <param name="motorVehicleType">Initial value of MotorVehicleType.</param>
         /// <param name="fuelCapacity">Initial value of FuelCapacity.</param>
@@ -241,7 +262,6 @@ namespace DomainModel.Entities
         /// <param name="cargoVolume">Initial value of CargoVolume.</param>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         public static MotorVehicleModel CreateMotorVehicleModel(global::System.Guid motorVehicleModelId, 
-                    global::System.Guid vehicleMakeId, 
                     string name, 
                     global::DomainModel.Entities.MotorVehicleType motorVehicleType, 
                     double fuelCapacity, 
@@ -254,7 +274,6 @@ namespace DomainModel.Entities
         {
             MotorVehicleModel motorVehicleModel = new MotorVehicleModel();
             motorVehicleModel.MotorVehicleModelId = motorVehicleModelId;
-            motorVehicleModel.VehicleMakeId = vehicleMakeId;
             motorVehicleModel.Name = name;
             motorVehicleModel.MotorVehicleType = motorVehicleType;
             motorVehicleModel.FuelCapacity = fuelCapacity;
@@ -294,7 +313,7 @@ namespace DomainModel.Entities
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         [global::Microsoft.OData.Client.OriginalNameAttribute("VehicleMakeId")]
-        public virtual global::System.Guid VehicleMakeId
+        public virtual global::System.Nullable<global::System.Guid> VehicleMakeId
         {
             get
             {
@@ -309,8 +328,8 @@ namespace DomainModel.Entities
             }
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
-        private global::System.Guid _VehicleMakeId;
-        partial void OnVehicleMakeIdChanging(global::System.Guid value);
+        private global::System.Nullable<global::System.Guid> _VehicleMakeId;
+        partial void OnVehicleMakeIdChanging(global::System.Nullable<global::System.Guid> value);
         partial void OnVehicleMakeIdChanged();
         /// <summary>
         /// There are no comments for Property Name in the schema.
@@ -519,6 +538,29 @@ namespace DomainModel.Entities
         private int _CargoVolume;
         partial void OnCargoVolumeChanging(int value);
         partial void OnCargoVolumeChanged();
+        /// <summary>
+        /// There are no comments for Property VehicleMake in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("VehicleMake")]
+        public virtual global::DomainModel.Entities.VehicleMake VehicleMake
+        {
+            get
+            {
+                return this._VehicleMake;
+            }
+            set
+            {
+                this.OnVehicleMakeChanging(value);
+                this._VehicleMake = value;
+                this.OnVehicleMakeChanged();
+                this.OnPropertyChanged("VehicleMake");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::DomainModel.Entities.VehicleMake _VehicleMake;
+        partial void OnVehicleMakeChanging(global::DomainModel.Entities.VehicleMake value);
+        partial void OnVehicleMakeChanged();
         /// <summary>
         /// There are no comments for Property MotorVehicles in the schema.
         /// </summary>

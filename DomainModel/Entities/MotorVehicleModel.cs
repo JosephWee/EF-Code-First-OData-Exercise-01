@@ -18,7 +18,7 @@ namespace DomainModel.Entities
         public Guid MotorVehicleModelId { get; set; }
 
         public Guid VehicleMakeId { get; set; }
-        public virtual VehicleMake VehicleMake { get; protected set; }
+        public virtual VehicleMake VehicleMake { get; set; }
 
         [Required]
         [MaxLength(50)]
