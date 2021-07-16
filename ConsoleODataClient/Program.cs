@@ -11,7 +11,21 @@ namespace ConsoleODataClient
     {
         static void Main(string[] args)
         {
+            DateTime dtStart = DateTime.UtcNow;
+
             ListAutoVehicleModels().Wait();
+
+            DateTime dtEnd = DateTime.UtcNow;
+
+            TimeSpan timeElapsed = dtEnd.Subtract(dtStart);
+
+            Console.WriteLine(
+                "Time Elapsed: {0}:{1}:{2}.{3}",
+                timeElapsed.Hours,
+                timeElapsed.Minutes,
+                timeElapsed.Seconds,
+                timeElapsed.Milliseconds
+            );
 
             Console.ReadKey();
         }
@@ -21,13 +35,15 @@ namespace ConsoleODataClient
             var serviceRoot = "https://localhost:44339/";
             var context = new Default.Container(new Uri(serviceRoot));
 
-            IEnumerable<Ent.MotorVehicleModel> vehicleModels = await context.MotorVehicleModels.Expand(mvm => mvm.VehicleMake).ExecuteAsync();
+            IEnumerable<Ent.MotorVehicleModel> vehicleModels =
+                await context
+                        .MotorVehicleModels
+                        .AddQueryOption("$filter", "TransmissionType eq DomainModel.Entities.TransmissionType'Auto'")
+                        .Expand(mvm => mvm.VehicleMake)
+                        .ExecuteAsync();
 
             var autoModels =
                 vehicleModels
-                .Where(
-                    mvm =>
-                        mvm.TransmissionType == Ent.TransmissionType.Auto)
                 .OrderBy(mvm => mvm.VehicleMake.Name)
                 .ThenBy(mvm => mvm.MotorVehicleType)
                 .ThenBy(mvm => mvm.Name)
