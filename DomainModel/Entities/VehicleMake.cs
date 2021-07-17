@@ -17,6 +17,9 @@ namespace DomainModel.Entities
 
         public Guid VehicleMakeId { get; set; }
 
+        [Timestamp]
+        public Byte[] TimeStamp { get; protected set; }
+
         [Required]
         [Index(IsUnique = true)]
         [MaxLength(50)]

@@ -12,6 +12,9 @@ namespace DomainModel.Entities
     {
         public Guid AddressId { get; set; }
 
+        [Timestamp]
+        public Byte[] TimeStamp { get; protected set; }
+
         [Required]
         [MaxLength(50)]
         public string AddressLine1 { get; set; }

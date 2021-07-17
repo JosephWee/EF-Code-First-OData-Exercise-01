@@ -86,6 +86,10 @@
     <Compile Include="Migrations\202107030906410_InitDB.designer.cs">
       <DependentUpon>202107030906410_InitDB.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202107170618256_ImplementConcurrencyChecks.cs" />
+    <Compile Include="Migrations\202107170618256_ImplementConcurrencyChecks.designer.cs">
+      <DependentUpon>202107170618256_ImplementConcurrencyChecks.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="VehicleRentalContext.cs" />
     <Compile Include="Entities\MotorVehicle.cs" />
@@ -118,6 +122,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202107030906410_InitDB.resx">
       <DependentUpon>202107030906410_InitDB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202107170618256_ImplementConcurrencyChecks.resx">
+      <DependentUpon>202107170618256_ImplementConcurrencyChecks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

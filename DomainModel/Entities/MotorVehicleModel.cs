@@ -17,6 +17,9 @@ namespace DomainModel.Entities
 
         public Guid MotorVehicleModelId { get; set; }
 
+        [Timestamp]
+        public Byte[] TimeStamp { get; protected set; }
+
         public Guid VehicleMakeId { get; set; }
         public virtual VehicleMake VehicleMake { get; set; }
 

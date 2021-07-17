@@ -13,6 +13,9 @@ namespace DomainModel.Entities
     {
         public Guid Id { get; set; }
 
+        [Timestamp]
+        public Byte[] TimeStamp { get; protected set; }
+
         [NotMapped]
         public VehicleMake VehicleMake
         {

@@ -17,6 +17,9 @@ namespace DomainModel.Entities
 
         public Guid CityId { get; set; }
 
+        [Timestamp]
+        public Byte[] TimeStamp { get; protected set; }
+
         public Guid StateId { get; set; }
         public virtual State State { get; protected set; }
 

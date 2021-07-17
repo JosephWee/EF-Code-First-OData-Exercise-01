@@ -17,6 +17,9 @@ namespace DomainModel.Entities
 
         public Guid CountryId { get; set; }
 
+        [Timestamp]
+        public Byte[] TimeStamp { get; protected set; }
+
         [MaxLength(50)]
         public string Name { get; set; }
 

@@ -17,6 +17,9 @@ namespace DomainModel.Entities
 
         public Guid LocationId { get; set; }
 
+        [Timestamp]
+        public Byte[] TimeStamp { get; protected set; }
+
         [Index]
         [MaxLength(50)]
         public string Name { get; set; }

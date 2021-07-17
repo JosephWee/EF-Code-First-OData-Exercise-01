@@ -5,6 +5,7 @@ using DomainModel;
 using Ent = DomainModel.Entities;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Data.Entity.Infrastructure;
 
 namespace DomainModelTest
 {
@@ -339,6 +340,132 @@ namespace DomainModelTest
             Assert.IsNotNull(addedAddr);
             Assert.IsNotNull(addedLocation);
             Assert.AreEqual(addedAddr.AddressId, addedLocation.AddressId);
+        }
+
+        /// <summary>
+        /// For more information on EF6 Concurrency see:
+        /// https://www.entityframeworktutorial.net/code-first/TimeStamp-dataannotations-attribute-in-code-first.aspx
+        /// https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/data-annotations
+        /// https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=net-5.0
+        /// https://docs.microsoft.com/en-us/ef/ef6/saving/concurrency
+        /// </summary>
+        [TestMethod]
+        [TestCategory("EF6 - Connected Scenario")]
+        [TestCategory("EF6 - Concurrency Conflict")]
+        public void ConcurrencyConflictDBWins()
+        {
+            var context1 = new VehicleRentalContext();
+            var context2 = new VehicleRentalContext();
+
+            Assert.IsTrue(context1.MotorVehicles.Any());
+
+            var vehicle1 = context1.MotorVehicles.First();
+            var vehicle2 = context2.MotorVehicles.Find(vehicle1.Id);
+
+            int vehicle1SaveAttempts = 0;
+            bool changeMileageSuccess = false;
+            while (!changeMileageSuccess)
+            {
+                try
+                {
+                    vehicle1SaveAttempts++;
+                    vehicle1.Mileage = vehicle1.Mileage + 1;
+                    context1.SaveChanges();
+                    changeMileageSuccess = true;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ex.Entries.Single().Reload();
+                }
+            }
+
+            Assert.AreNotEqual(vehicle1.TimeStamp, vehicle2.TimeStamp);
+
+            int vehicle2SaveAttempts = 0;
+            bool changeFrontParkingSensorSuccess = false;
+            while (!changeFrontParkingSensorSuccess)
+            {
+                try
+                {
+                    vehicle2SaveAttempts++;
+                    vehicle2.HasForwardParkingSensor = !vehicle2.HasForwardParkingSensor;
+                    context2.SaveChanges();
+                    changeFrontParkingSensorSuccess = true;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    ex.Entries.Single().Reload();
+                }
+            }
+
+            Assert.IsTrue(changeMileageSuccess);
+            Assert.IsTrue(changeFrontParkingSensorSuccess);
+            Assert.AreEqual(1, vehicle1SaveAttempts);
+            Assert.AreEqual(2, vehicle2SaveAttempts);
+        }
+
+        /// <summary>
+        /// For more information on EF6 Concurrency see:
+        /// https://www.entityframeworktutorial.net/code-first/TimeStamp-dataannotations-attribute-in-code-first.aspx
+        /// https://docs.microsoft.com/en-us/ef/ef6/modeling/code-first/data-annotations
+        /// https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.timestampattribute?view=net-5.0
+        /// https://docs.microsoft.com/en-us/ef/ef6/saving/concurrency
+        /// </summary>
+        [TestMethod]
+        [TestCategory("EF6 - Connected Scenario")]
+        [TestCategory("EF6 - Concurrency Conflict")]
+        public void ConcurrencyConflictClientWins()
+        {
+            var context1 = new VehicleRentalContext();
+            var context2 = new VehicleRentalContext();
+
+            Assert.IsTrue(context1.MotorVehicles.Any());
+
+            var vehicle1 = context1.MotorVehicles.First();
+            var vehicle2 = context2.MotorVehicles.Find(vehicle1.Id);
+
+            int vehicle1SaveAttempts = 0;
+            bool changeMileageSuccess = false;
+            while (!changeMileageSuccess)
+            {
+                try
+                {
+                    vehicle1SaveAttempts++;
+                    vehicle1.Mileage = vehicle1.Mileage + 1;
+                    context1.SaveChanges();
+                    changeMileageSuccess = true;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var entry = ex.Entries.Single();
+                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                }
+            }
+
+            Assert.AreNotEqual(vehicle1.TimeStamp, vehicle2.TimeStamp);
+
+            int vehicle2SaveAttempts = 0;
+            bool changeFrontParkingSensorSuccess = false;
+            while (!changeFrontParkingSensorSuccess)
+            {
+                try
+                {
+                    vehicle2SaveAttempts++;
+                    vehicle2.HasForwardParkingSensor = !vehicle2.HasForwardParkingSensor;
+                    context2.SaveChanges();
+                    changeFrontParkingSensorSuccess = true;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var entry = ex.Entries.Single();
+                    entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                }
+            }
+
+            Assert.IsTrue(changeMileageSuccess);
+            Assert.IsTrue(changeFrontParkingSensorSuccess);
+            Assert.AreEqual(1, vehicle1SaveAttempts);
+            Assert.AreEqual(2, vehicle2SaveAttempts);
         }
     }
 }
