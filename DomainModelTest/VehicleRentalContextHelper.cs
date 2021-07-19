@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Ent = DomainModel.Entities;
 using DomainModel.Extensions;
+using DomainModelHelpers;
 
 namespace DomainModelTest
 {

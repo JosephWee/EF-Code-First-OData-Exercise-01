@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI", "WebAPI\WebAPI.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleODataClient", "ConsoleODataClient\ConsoleODataClient.csproj", "{F1B8BE25-7577-412A-8041-FEFADE3121E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DomainModelHelpers", "DomainModelHelpers\DomainModelHelpers.csproj", "{90477343-4027-4E12-AED7-A67A396BCF16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F1B8BE25-7577-412A-8041-FEFADE3121E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1B8BE25-7577-412A-8041-FEFADE3121E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1B8BE25-7577-412A-8041-FEFADE3121E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90477343-4027-4E12-AED7-A67A396BCF16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90477343-4027-4E12-AED7-A67A396BCF16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90477343-4027-4E12-AED7-A67A396BCF16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90477343-4027-4E12-AED7-A67A396BCF16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

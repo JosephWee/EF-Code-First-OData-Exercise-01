@@ -6,6 +6,7 @@
           <PropertyRef Name="VehicleMakeId" />
         </Key>
         <Property Name="VehicleMakeId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TimeStamp" Type="Edm.Binary" />
         <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" />
         <NavigationProperty Name="MotorVehicleModels" Type="Collection(DomainModel.Entities.MotorVehicleModel)" />
       </EntityType>
@@ -14,6 +15,7 @@
           <PropertyRef Name="MotorVehicleModelId" />
         </Key>
         <Property Name="MotorVehicleModelId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TimeStamp" Type="Edm.Binary" />
         <Property Name="VehicleMakeId" Type="Edm.Guid" />
         <Property Name="Name" Type="Edm.String" Nullable="false" MaxLength="50" />
         <Property Name="MotorVehicleType" Type="DomainModel.Entities.MotorVehicleType" Nullable="false" />
@@ -34,6 +36,7 @@
           <PropertyRef Name="Id" />
         </Key>
         <Property Name="Id" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TimeStamp" Type="Edm.Binary" />
         <Property Name="MotorVehicleModelId" Type="Edm.Guid" />
         <Property Name="Year" Type="Edm.Int32" Nullable="false" />
         <Property Name="VIN" Type="Edm.String" Nullable="false" MaxLength="17" />
@@ -84,13 +87,28 @@
       <EntityContainer Name="Container">
         <EntitySet Name="VehicleMakes" EntityType="DomainModel.Entities.VehicleMake">
           <NavigationPropertyBinding Path="MotorVehicleModels" Target="MotorVehicleModels" />
+          <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
+            <Collection>
+              <PropertyPath>TimeStamp</PropertyPath>
+            </Collection>
+          </Annotation>
         </EntitySet>
         <EntitySet Name="MotorVehicleModels" EntityType="DomainModel.Entities.MotorVehicleModel">
           <NavigationPropertyBinding Path="MotorVehicles" Target="MotorVehicles" />
           <NavigationPropertyBinding Path="VehicleMake" Target="VehicleMakes" />
+          <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
+            <Collection>
+              <PropertyPath>TimeStamp</PropertyPath>
+            </Collection>
+          </Annotation>
         </EntitySet>
         <EntitySet Name="MotorVehicles" EntityType="DomainModel.Entities.MotorVehicle">
           <NavigationPropertyBinding Path="MotorVehicleModel" Target="MotorVehicleModels" />
+          <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
+            <Collection>
+              <PropertyPath>TimeStamp</PropertyPath>
+            </Collection>
+          </Annotation>
         </EntitySet>
       </EntityContainer>
     </Schema>

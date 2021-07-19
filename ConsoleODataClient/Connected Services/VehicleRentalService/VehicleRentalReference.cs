@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 15/7/2021 4:48:59 pm
+// Generation date: 19/7/2021 11:22:33 am
 namespace DomainModel.Entities
 {
         /// <summary>
@@ -104,6 +104,29 @@ namespace DomainModel.Entities
         private global::System.Guid _VehicleMakeId;
         partial void OnVehicleMakeIdChanging(global::System.Guid value);
         partial void OnVehicleMakeIdChanged();
+        /// <summary>
+        /// There are no comments for Property TimeStamp in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("TimeStamp")]
+        public virtual byte[] TimeStamp
+        {
+            get
+            {
+                return this._TimeStamp;
+            }
+            set
+            {
+                this.OnTimeStampChanging(value);
+                this._TimeStamp = value;
+                this.OnTimeStampChanged();
+                this.OnPropertyChanged("TimeStamp");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private byte[] _TimeStamp;
+        partial void OnTimeStampChanging(byte[] value);
+        partial void OnTimeStampChanged();
         /// <summary>
         /// There are no comments for Property Name in the schema.
         /// </summary>
@@ -308,6 +331,29 @@ namespace DomainModel.Entities
         private global::System.Guid _MotorVehicleModelId;
         partial void OnMotorVehicleModelIdChanging(global::System.Guid value);
         partial void OnMotorVehicleModelIdChanged();
+        /// <summary>
+        /// There are no comments for Property TimeStamp in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("TimeStamp")]
+        public virtual byte[] TimeStamp
+        {
+            get
+            {
+                return this._TimeStamp;
+            }
+            set
+            {
+                this.OnTimeStampChanging(value);
+                this._TimeStamp = value;
+                this.OnTimeStampChanged();
+                this.OnPropertyChanged("TimeStamp");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private byte[] _TimeStamp;
+        partial void OnTimeStampChanging(byte[] value);
+        partial void OnTimeStampChanged();
         /// <summary>
         /// There are no comments for Property VehicleMakeId in the schema.
         /// </summary>
@@ -723,6 +769,29 @@ namespace DomainModel.Entities
         private global::System.Guid _Id;
         partial void OnIdChanging(global::System.Guid value);
         partial void OnIdChanged();
+        /// <summary>
+        /// There are no comments for Property TimeStamp in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("TimeStamp")]
+        public virtual byte[] TimeStamp
+        {
+            get
+            {
+                return this._TimeStamp;
+            }
+            set
+            {
+                this.OnTimeStampChanging(value);
+                this._TimeStamp = value;
+                this.OnTimeStampChanged();
+                this.OnPropertyChanged("TimeStamp");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private byte[] _TimeStamp;
+        partial void OnTimeStampChanging(byte[] value);
+        partial void OnTimeStampChanged();
         /// <summary>
         /// There are no comments for Property MotorVehicleModelId in the schema.
         /// </summary>

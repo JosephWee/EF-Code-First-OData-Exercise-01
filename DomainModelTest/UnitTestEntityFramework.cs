@@ -6,6 +6,7 @@ using Ent = DomainModel.Entities;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Data.Entity.Infrastructure;
+using DomainModelHelpers;
 
 namespace DomainModelTest
 {
