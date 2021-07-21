@@ -71,7 +71,7 @@ namespace WebAPI
         protected async Task AppendHttpContent(HttpResponseMessage httpResponseMessage)
         {
             AppendToHeaderDictionary(ResponseContentHeaders, httpResponseMessage.Content.Headers);
-            ResponseContent = await GetHttpContent(httpResponseMessage.Content);
+            //ResponseContent = await GetHttpContent(httpResponseMessage.Content);
         }
 
         /// <summary>
