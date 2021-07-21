@@ -14,6 +14,10 @@ namespace WebAPI
     {
         public static void Register(HttpConfiguration config)
         {
+            // For more information please see:
+            // https://docs.microsoft.com/en-us/aspnet/web-api/overview/advanced/http-message-handlers
+            config.MessageHandlers.Add(new HttpLogHandler());
+
             // Web API configuration and services
 
             // Web API routes
