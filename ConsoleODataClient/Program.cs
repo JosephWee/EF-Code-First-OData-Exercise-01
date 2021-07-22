@@ -1,7 +1,9 @@
 ﻿using DomainModelHelpers;
+using Microsoft.OData.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Ent = DomainModel.Entities;
@@ -31,6 +33,9 @@ namespace ConsoleODataClient
             
             var addedMotorVehicle = await AddMotorVehicleAsync();
             Console.WriteLine(addedMotorVehicle.ToString());
+
+            var batchQueryAsync = await BatchQueryAsync();
+            Console.WriteLine(batchQueryAsync.ToString());
 
             return;
         }
@@ -194,6 +199,86 @@ namespace ConsoleODataClient
             consoleOutput.AppendLine(
                 string.Format(
                     "AddMotorVehicleAsync\r\nTime Elapsed: {0}:{1}:{2}.{3}\r\n\r\n",
+                    timeElapsed.Hours,
+                    timeElapsed.Minutes,
+                    timeElapsed.Seconds,
+                    timeElapsed.Milliseconds)
+            );
+
+            return consoleOutput;
+        }
+
+        static async Task<StringBuilder> BatchQueryAsync()
+        {
+            DateTime dtStart = DateTime.UtcNow;
+
+            var serviceRoot = "https://localhost:44339/";
+            var context = new Default.Container(new Uri(serviceRoot));
+
+            var queryVehicleMakes =
+                context.VehicleMakes
+                .AddQueryOption("$count", "true")
+                .AddQueryOption("$orderby", "Name");
+
+            var queryVehicleModels =
+                context.MotorVehicleModels
+                .AddQueryOption("$count", "true")
+                .AddQueryOption("$top", "5")
+                .AddQueryOption("$skip", "0")
+                .AddQueryOption("$orderby", "Name")
+                .Expand(mvm => mvm.VehicleMake);
+
+            DataServiceResponse dataServiceResponse =
+                await context.ExecuteBatchAsync(queryVehicleMakes, queryVehicleModels);
+
+            StringBuilder consoleOutput = new StringBuilder();
+
+            if (dataServiceResponse != null)
+            {
+                if (dataServiceResponse.BatchStatusCode == (int)HttpStatusCode.OK)
+                {
+                    foreach (var r in dataServiceResponse)
+                    {
+                        QueryOperationResponse<Ent.VehicleMake> vehicleMakes = r as QueryOperationResponse<Ent.VehicleMake>;
+                        if (vehicleMakes != null)
+                        {
+                            foreach (var vehicleMake in vehicleMakes)
+                            {
+                                consoleOutput.AppendLine(
+                                    string.Format(
+                                        "Make: {0}\r\n",
+                                        vehicleMake.Name
+                                    )
+                                );
+                            }
+                        }
+
+                        QueryOperationResponse<Ent.MotorVehicleModel> motorVehicleModels = r as QueryOperationResponse<Ent.MotorVehicleModel>;
+                        if (motorVehicleModels != null)
+                        {
+                            foreach (var motorVehicleModel in motorVehicleModels)
+                            {
+                                consoleOutput.AppendLine(
+                                    string.Format(
+                                        "Make: {0}\r\nModel: {1}\r\nTransmission: {2}\r\n",
+                                        motorVehicleModel.VehicleMake.Name,
+                                        motorVehicleModel.Name,
+                                        motorVehicleModel.TransmissionType
+                                    )
+                                );
+                            }
+                        }
+                    }
+                }
+            }
+            
+            DateTime dtEnd = DateTime.UtcNow;
+
+            TimeSpan timeElapsed = dtEnd.Subtract(dtStart);
+
+            consoleOutput.AppendLine(
+                string.Format(
+                    "BatchQueryAsync\r\nTime Elapsed: {0}:{1}:{2}.{3}\r\n\r\n",
                     timeElapsed.Hours,
                     timeElapsed.Minutes,
                     timeElapsed.Seconds,
