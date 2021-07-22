@@ -555,7 +555,8 @@ namespace DomainModelTest
                             };
                         locations.Add(location);
 
-                        for (int p = 0; p < parkingCapacity; p++)
+                        int vehicleCount = parkingCapacity - 5;
+                        for (int p = 0; p < vehicleCount; p++)
                         {
                             Ent.MotorVehicleModel vehModel = qModels.Dequeue();
 

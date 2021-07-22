@@ -11,6 +11,7 @@ using Microsoft.AspNet.OData;
 using ODat = Microsoft.AspNet.OData;
 using DomainModel;
 using Ent = DomainModel.Entities;
+using Biz = DomainModel.BusinessObjects;
 
 namespace WebAPI.Controllers
 {
@@ -110,6 +111,35 @@ namespace WebAPI.Controllers
             context.MotorVehicles.Remove(motorVehicle);
             await context.SaveChangesAsync();
             return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        [HttpPatch]
+        public async Task<IHttpActionResult> Move([FromODataUri] Guid key, Guid toLocation)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            
+            var motorVehicle = await context.MotorVehicles.FindAsync(key);
+            if (motorVehicle == null)
+                return NotFound();
+
+            var location = await context.Locations.FindAsync(toLocation);
+            if (location == null)
+                return BadRequest("Unable to find location specified.");
+
+            try
+            {
+                await Biz.MotorVehicle.MoveAsync(context, motorVehicle, location);
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MotorVehicleExists(key))
+                    return NotFound();
+                else
+                    throw;
+            }
+
+            return Updated(motorVehicle);
         }
     }
 }

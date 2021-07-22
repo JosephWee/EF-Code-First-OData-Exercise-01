@@ -72,6 +72,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessObjects\MotorVehicle.cs" />
     <Compile Include="Entities\Address.cs" />
     <Compile Include="Entities\Suburb.cs" />
     <Compile Include="Entities\City.cs" />
@@ -127,6 +128,7 @@
       <DependentUpon>202107170618256_ImplementConcurrencyChecks.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

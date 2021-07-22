@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using DomainModel;
 using Ent = DomainModel.Entities;
+using Biz = DomainModel.BusinessObjects;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Data.Entity.Infrastructure;
@@ -467,6 +468,46 @@ namespace DomainModelTest
             Assert.IsTrue(changeFrontParkingSensorSuccess);
             Assert.AreEqual(1, vehicle1SaveAttempts);
             Assert.AreEqual(2, vehicle2SaveAttempts);
+        }
+
+        [TestMethod]
+        [TestCategory("EF6 - Connected Scenario")]
+        [TestCategory("EF6 - Business Objects")]
+        public void MoveMotorVehicle()
+        {
+            var context = new VehicleRentalContext();
+            
+            Assert.IsTrue(context.MotorVehicles.Any());
+            Assert.IsTrue(context.Locations.Any());
+
+            var motorVehicle = context.MotorVehicles.FirstOrDefault(mv => mv.LocationId.HasValue);
+            var toLocation = context.Locations.FirstOrDefault(loc => loc.LocationId != motorVehicle.LocationId);
+
+            Guid originalLocationId = motorVehicle.LocationId.Value;
+
+            int saveAttempts = 0;
+            bool moveSuccess = false;
+            while (!moveSuccess)
+            {
+                try
+                {
+                    saveAttempts++;
+                    Biz.MotorVehicle.MoveAsync(context, motorVehicle, toLocation).Wait();
+                    moveSuccess = true;
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var entries = ex.Entries;
+                    foreach (var entry in entries)
+                    {
+                        entry.OriginalValues.SetValues(entry.GetDatabaseValues());
+                    }
+                }
+            }
+
+            Assert.AreNotEqual(originalLocationId, motorVehicle.LocationId);
+            Assert.IsTrue(moveSuccess);
+            Assert.AreEqual(1, saveAttempts);
         }
     }
 }
