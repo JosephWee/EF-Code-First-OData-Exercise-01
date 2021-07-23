@@ -99,13 +99,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Connected Services\VehicleRentalService\VehicleRentalServiceCsdl.xml" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\DomainModelHelpers\DomainModelHelpers.csproj">
       <Project>{90477343-4027-4e12-aed7-a67a396bcf16}</Project>
       <Name>DomainModelHelpers</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Connected Services\VehicleRentalService\VehicleRentalServiceCsdl.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

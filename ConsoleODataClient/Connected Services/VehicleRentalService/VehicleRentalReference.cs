@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 19/7/2021 11:22:33 am
+// Generation date: 23/7/2021 10:07:45 am
 namespace DomainModel.Entities
 {
         /// <summary>
@@ -694,6 +694,28 @@ namespace DomainModel.Entities
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private global::DomainModel.Entities.MotorVehicleModelSingle _MotorVehicleModel;
+        /// <summary>
+        /// There are no comments for Location in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Location")]
+        public virtual global::DomainModel.Entities.LocationSingle Location
+        {
+            get
+            {
+                if (!this.IsComposable)
+                {
+                    throw new global::System.NotSupportedException("The previous function is not composable.");
+                }
+                if ((this._Location == null))
+                {
+                    this._Location = new global::DomainModel.Entities.LocationSingle(this.Context, GetPath("Location"));
+                }
+                return this._Location;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::DomainModel.Entities.LocationSingle _Location;
     }
         /// <summary>
         /// There are no comments for MotorVehicle in the schema.
@@ -1115,6 +1137,257 @@ namespace DomainModel.Entities
         partial void OnMotorVehicleModelChanging(global::DomainModel.Entities.MotorVehicleModel value);
         partial void OnMotorVehicleModelChanged();
         /// <summary>
+        /// There are no comments for Property Location in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Location")]
+        public virtual global::DomainModel.Entities.Location Location
+        {
+            get
+            {
+                return this._Location;
+            }
+            set
+            {
+                this.OnLocationChanging(value);
+                this._Location = value;
+                this.OnLocationChanged();
+                this.OnPropertyChanged("Location");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::DomainModel.Entities.Location _Location;
+        partial void OnLocationChanging(global::DomainModel.Entities.Location value);
+        partial void OnLocationChanged();
+        /// <summary>
+        /// This event is raised when the value of the property is changed
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public event global::System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// The value of the property is changed
+        /// </summary>
+        /// <param name="property">property name</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        protected virtual void OnPropertyChanged(string property)
+        {
+            if ((this.PropertyChanged != null))
+            {
+                this.PropertyChanged(this, new global::System.ComponentModel.PropertyChangedEventArgs(property));
+            }
+        }
+    }
+        /// <summary>
+        /// There are no comments for LocationSingle in the schema.
+        /// </summary>
+    [global::Microsoft.OData.Client.OriginalNameAttribute("LocationSingle")]
+    public partial class LocationSingle : global::Microsoft.OData.Client.DataServiceQuerySingle<Location>
+    {
+        /// <summary>
+        /// Initialize a new LocationSingle object.
+        /// </summary>
+        public LocationSingle(global::Microsoft.OData.Client.DataServiceContext context, string path)
+            : base(context, path) {}
+
+        /// <summary>
+        /// Initialize a new LocationSingle object.
+        /// </summary>
+        public LocationSingle(global::Microsoft.OData.Client.DataServiceContext context, string path, bool isComposable)
+            : base(context, path, isComposable) {}
+
+        /// <summary>
+        /// Initialize a new LocationSingle object.
+        /// </summary>
+        public LocationSingle(global::Microsoft.OData.Client.DataServiceQuerySingle<Location> query)
+            : base(query) {}
+
+        /// <summary>
+        /// There are no comments for Fleet in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Fleet")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.MotorVehicle> Fleet
+        {
+            get
+            {
+                if (!this.IsComposable)
+                {
+                    throw new global::System.NotSupportedException("The previous function is not composable.");
+                }
+                if ((this._Fleet == null))
+                {
+                    this._Fleet = Context.CreateQuery<global::DomainModel.Entities.MotorVehicle>(GetPath("Fleet"));
+                }
+                return this._Fleet;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.MotorVehicle> _Fleet;
+    }
+        /// <summary>
+        /// There are no comments for Location in the schema.
+        /// </summary>
+    /// <KeyProperties>
+    /// LocationId
+    /// </KeyProperties>
+    [global::Microsoft.OData.Client.Key("LocationId")]
+    [global::Microsoft.OData.Client.OriginalNameAttribute("Location")]
+    public partial class Location : global::Microsoft.OData.Client.BaseEntityType, global::System.ComponentModel.INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Create a new Location object.
+        /// </summary>
+        /// <param name="locationId">Initial value of LocationId.</param>
+        /// <param name="addressId">Initial value of AddressId.</param>
+        /// <param name="parkingCapacity">Initial value of ParkingCapacity.</param>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public static Location CreateLocation(global::System.Guid locationId, global::System.Guid addressId, int parkingCapacity)
+        {
+            Location location = new Location();
+            location.LocationId = locationId;
+            location.AddressId = addressId;
+            location.ParkingCapacity = parkingCapacity;
+            return location;
+        }
+        /// <summary>
+        /// There are no comments for Property LocationId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("LocationId")]
+        public virtual global::System.Guid LocationId
+        {
+            get
+            {
+                return this._LocationId;
+            }
+            set
+            {
+                this.OnLocationIdChanging(value);
+                this._LocationId = value;
+                this.OnLocationIdChanged();
+                this.OnPropertyChanged("LocationId");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Guid _LocationId;
+        partial void OnLocationIdChanging(global::System.Guid value);
+        partial void OnLocationIdChanged();
+        /// <summary>
+        /// There are no comments for Property TimeStamp in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("TimeStamp")]
+        public virtual byte[] TimeStamp
+        {
+            get
+            {
+                return this._TimeStamp;
+            }
+            set
+            {
+                this.OnTimeStampChanging(value);
+                this._TimeStamp = value;
+                this.OnTimeStampChanged();
+                this.OnPropertyChanged("TimeStamp");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private byte[] _TimeStamp;
+        partial void OnTimeStampChanging(byte[] value);
+        partial void OnTimeStampChanged();
+        /// <summary>
+        /// There are no comments for Property Name in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Name")]
+        public virtual string Name
+        {
+            get
+            {
+                return this._Name;
+            }
+            set
+            {
+                this.OnNameChanging(value);
+                this._Name = value;
+                this.OnNameChanged();
+                this.OnPropertyChanged("Name");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private string _Name;
+        partial void OnNameChanging(string value);
+        partial void OnNameChanged();
+        /// <summary>
+        /// There are no comments for Property AddressId in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("AddressId")]
+        public virtual global::System.Guid AddressId
+        {
+            get
+            {
+                return this._AddressId;
+            }
+            set
+            {
+                this.OnAddressIdChanging(value);
+                this._AddressId = value;
+                this.OnAddressIdChanged();
+                this.OnPropertyChanged("AddressId");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::System.Guid _AddressId;
+        partial void OnAddressIdChanging(global::System.Guid value);
+        partial void OnAddressIdChanged();
+        /// <summary>
+        /// There are no comments for Property ParkingCapacity in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("ParkingCapacity")]
+        public virtual int ParkingCapacity
+        {
+            get
+            {
+                return this._ParkingCapacity;
+            }
+            set
+            {
+                this.OnParkingCapacityChanging(value);
+                this._ParkingCapacity = value;
+                this.OnParkingCapacityChanged();
+                this.OnPropertyChanged("ParkingCapacity");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private int _ParkingCapacity;
+        partial void OnParkingCapacityChanging(int value);
+        partial void OnParkingCapacityChanged();
+        /// <summary>
+        /// There are no comments for Property Fleet in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Fleet")]
+        public virtual global::Microsoft.OData.Client.DataServiceCollection<global::DomainModel.Entities.MotorVehicle> Fleet
+        {
+            get
+            {
+                return this._Fleet;
+            }
+            set
+            {
+                this.OnFleetChanging(value);
+                this._Fleet = value;
+                this.OnFleetChanged();
+                this.OnPropertyChanged("Fleet");
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceCollection<global::DomainModel.Entities.MotorVehicle> _Fleet = new global::Microsoft.OData.Client.DataServiceCollection<global::DomainModel.Entities.MotorVehicle>(null, global::Microsoft.OData.Client.TrackingMode.None);
+        partial void OnFleetChanging(global::Microsoft.OData.Client.DataServiceCollection<global::DomainModel.Entities.MotorVehicle> value);
+        partial void OnFleetChanged();
+        /// <summary>
         /// This event is raised when the value of the property is changed
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -1273,6 +1546,29 @@ namespace DomainModel.Entities
                 { "Id", id }
             };
             return new global::DomainModel.Entities.MotorVehicleSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::DomainModel.Entities.Location as global::DomainModel.Entities.LocationSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="_keys">dictionary with the names and values of keys</param>
+        public static global::DomainModel.Entities.LocationSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.Location> _source, global::System.Collections.Generic.IDictionary<string, object> _keys)
+        {
+            return new global::DomainModel.Entities.LocationSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
+        }
+        /// <summary>
+        /// Get an entity of type global::DomainModel.Entities.Location as global::DomainModel.Entities.LocationSingle specified by key from an entity set
+        /// </summary>
+        /// <param name="_source">source entity set</param>
+        /// <param name="locationId">The value of locationId</param>
+        public static global::DomainModel.Entities.LocationSingle ByKey(this global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.Location> _source,
+            global::System.Guid locationId)
+        {
+            global::System.Collections.Generic.IDictionary<string, object> _keys = new global::System.Collections.Generic.Dictionary<string, object>
+            {
+                { "LocationId", locationId }
+            };
+            return new global::DomainModel.Entities.LocationSingle(_source.Context, _source.GetKeyPath(global::Microsoft.OData.Client.Serializer.GetKeyString(_source.Context, _keys)));
         }
     }
 }

@@ -53,6 +53,20 @@
         <NavigationProperty Name="MotorVehicleModel" Type="DomainModel.Entities.MotorVehicleModel">
           <ReferentialConstraint Property="MotorVehicleModelId" ReferencedProperty="MotorVehicleModelId" />
         </NavigationProperty>
+        <NavigationProperty Name="Location" Type="DomainModel.Entities.Location">
+          <ReferentialConstraint Property="LocationId" ReferencedProperty="LocationId" />
+        </NavigationProperty>
+      </EntityType>
+      <EntityType Name="Location">
+        <Key>
+          <PropertyRef Name="LocationId" />
+        </Key>
+        <Property Name="LocationId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="TimeStamp" Type="Edm.Binary" />
+        <Property Name="Name" Type="Edm.String" MaxLength="50" />
+        <Property Name="AddressId" Type="Edm.Guid" Nullable="false" />
+        <Property Name="ParkingCapacity" Type="Edm.Int32" Nullable="false" />
+        <NavigationProperty Name="Fleet" Type="Collection(DomainModel.Entities.MotorVehicle)" />
       </EntityType>
       <EnumType Name="MotorVehicleType">
         <Member Name="Scooter" Value="0" />
