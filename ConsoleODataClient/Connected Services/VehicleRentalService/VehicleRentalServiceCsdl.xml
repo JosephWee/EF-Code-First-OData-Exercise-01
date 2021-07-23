@@ -117,7 +117,16 @@
           </Annotation>
         </EntitySet>
         <EntitySet Name="MotorVehicles" EntityType="DomainModel.Entities.MotorVehicle">
+          <NavigationPropertyBinding Path="Location" Target="Locations" />
           <NavigationPropertyBinding Path="MotorVehicleModel" Target="MotorVehicleModels" />
+          <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
+            <Collection>
+              <PropertyPath>TimeStamp</PropertyPath>
+            </Collection>
+          </Annotation>
+        </EntitySet>
+        <EntitySet Name="Locations" EntityType="DomainModel.Entities.Location">
+          <NavigationPropertyBinding Path="Fleet" Target="MotorVehicles" />
           <Annotation Term="Org.OData.Core.V1.OptimisticConcurrency">
             <Collection>
               <PropertyPath>TimeStamp</PropertyPath>

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generation date: 23/7/2021 10:07:45 am
+// Generation date: 23/7/2021 2:44:06 pm
 namespace DomainModel.Entities
 {
         /// <summary>
@@ -1696,6 +1696,24 @@ namespace Default
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.MotorVehicle> _MotorVehicles;
         /// <summary>
+        /// There are no comments for Locations in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        [global::Microsoft.OData.Client.OriginalNameAttribute("Locations")]
+        public virtual global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.Location> Locations
+        {
+            get
+            {
+                if ((this._Locations == null))
+                {
+                    this._Locations = base.CreateQuery<global::DomainModel.Entities.Location>("Locations");
+                }
+                return this._Locations;
+            }
+        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        private global::Microsoft.OData.Client.DataServiceQuery<global::DomainModel.Entities.Location> _Locations;
+        /// <summary>
         /// There are no comments for VehicleMakes in the schema.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
@@ -1718,6 +1736,14 @@ namespace Default
         public virtual void AddToMotorVehicles(global::DomainModel.Entities.MotorVehicle motorVehicle)
         {
             base.AddObject("MotorVehicles", motorVehicle);
+        }
+        /// <summary>
+        /// There are no comments for Locations in the schema.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
+        public virtual void AddToLocations(global::DomainModel.Entities.Location location)
+        {
+            base.AddObject("Locations", location);
         }
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.OData.Client.Design.T4", "#VersionNumber#")]
         private abstract class GeneratedEdmModel

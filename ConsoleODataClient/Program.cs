@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Ent = DomainModel.Entities;
@@ -36,6 +37,9 @@ namespace ConsoleODataClient
 
             var batchQueryAsync = await BatchQueryAsync();
             Console.WriteLine(batchQueryAsync.ToString());
+
+            var moveMotorVehicleAsync = await MoveMotorVehicleAsync();
+            Console.WriteLine(moveMotorVehicleAsync.ToString());
 
             return;
         }
@@ -279,6 +283,98 @@ namespace ConsoleODataClient
             consoleOutput.AppendLine(
                 string.Format(
                     "BatchQueryAsync\r\nTime Elapsed: {0}:{1}:{2}.{3}\r\n\r\n",
+                    timeElapsed.Hours,
+                    timeElapsed.Minutes,
+                    timeElapsed.Seconds,
+                    timeElapsed.Milliseconds)
+            );
+
+            return consoleOutput;
+        }
+
+        static async Task<StringBuilder> MoveMotorVehicleAsync()
+        {
+            DateTime dtStart = DateTime.UtcNow;
+
+            var serviceRoot = "https://localhost:44339/";
+            var context = new Default.Container(new Uri(serviceRoot));
+
+            var queryMotorVehicles =
+                await context.MotorVehicles
+                .AddQueryOption("$count", "true")
+                .AddQueryOption("$top", "5")
+                .AddQueryOption("$filter", "LocationId ne null")
+                .AddQueryOption("$orderby", "LocationId")
+                .Expand(mv => mv.Location)
+                .ExecuteAsync();
+
+            var motorVehicles = queryMotorVehicles.ToList();
+
+            var excludedLocationIds =
+                motorVehicles
+                .Where(mv => mv.LocationId.HasValue)
+                .Select(mv => string.Format("LocationId ne {0:D}", mv.LocationId.Value))
+                .Distinct()
+                .ToList();
+
+            var filterArgument =
+                string.Format(
+                    "({0})",
+                    string.Join(" and ", excludedLocationIds)
+                );
+
+            var queryLocations =
+                await context.Locations
+                .AddQueryOption("$count", "true")
+                .AddQueryOption("$top", "5")
+                .AddQueryOption("$filter", filterArgument)
+                .AddQueryOption("$orderby", "Name")
+                .Expand(loc => loc.Fleet)
+                .ExecuteAsync();
+
+            var locations = queryLocations.ToList();
+
+            var motorVehicle = motorVehicles.FirstOrDefault();
+            var toLocation = locations.FirstOrDefault();
+
+            string requestJson = $"{{ \"toLocation\": \"{toLocation.LocationId.ToString("D")}\" }}";
+            StringContent stringContent =
+                new StringContent(
+                    requestJson,
+                    Encoding.UTF8,
+                    "application/json");
+
+            HttpClient httpClient = new HttpClient();
+
+            string requestUri = "https://localhost:44339/svc/MotorVehicles/Move/" + $"{motorVehicle.Id.ToString("D")}";
+            HttpResponseMessage httpResponse =
+                await httpClient.PostAsync(
+                    requestUri,
+                    stringContent
+                );
+
+            StringBuilder consoleOutput = new StringBuilder();
+
+            if (httpResponse != null)
+            {
+                consoleOutput.AppendLine(
+                    string.Format(
+                        "Request:\r\n{0}\r\nBody: {1}\r\n\r\nResponse:\r\nStatusCode: {2}\r\nResponse Content: {3}\r\n",
+                        httpResponse.RequestMessage,
+                        requestJson,
+                        httpResponse.StatusCode,
+                        await httpResponse.Content.ReadAsStringAsync()
+                    )
+                );
+            }
+
+            DateTime dtEnd = DateTime.UtcNow;
+
+            TimeSpan timeElapsed = dtEnd.Subtract(dtStart);
+
+            consoleOutput.AppendLine(
+                string.Format(
+                    "MoveMotorVehicleAsync\r\nTime Elapsed: {0}:{1}:{2}.{3}\r\n\r\n",
                     timeElapsed.Hours,
                     timeElapsed.Minutes,
                     timeElapsed.Seconds,
