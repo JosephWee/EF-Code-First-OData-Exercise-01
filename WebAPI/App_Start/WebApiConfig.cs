@@ -41,6 +41,7 @@ namespace WebAPI
             builder.EntitySet<Ent.VehicleMake>("VehicleMakes");
             builder.EntitySet<Ent.MotorVehicleModel>("MotorVehicleModels");
             builder.EntitySet<Ent.MotorVehicle>("MotorVehicles");
+            builder.EntitySet<Ent.Location>("Locations");
 
             //Read the following for more information regarding $batch
             //https://devblogs.microsoft.com/odata/all-in-one-with-odata-batch/
